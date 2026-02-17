@@ -140,6 +140,18 @@ Since this is static HTML, simply open files in a browser:
 - Push to `main` branch → automatically published to `https://ZawaaDon.github.io/`
 - No build step required (pure HTML/CSS/JS)
 
+### Git Commit Messages
+- **Always write commit messages in English**
+- Use conventional format: brief summary line + detailed description
+- Example:
+  ```
+  Add compact style template and update documentation
+  
+  - Add posts/template_compact.html as new blog post template
+  - Update posts/001_hello.html to compact style (minimized spacing)
+  - Update .github/copilot-instructions.md with latest site structure
+  ```
+
 ## Adding New Content
 
 ### New Gallery Project
