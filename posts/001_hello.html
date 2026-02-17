@@ -3,32 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最初の記事 - My Blog</title>
+    <title>サイトを開設しました - ZawaaDon Homepage</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+        /* ナビゲーション */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        nav ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            list-style: none;
+        }
+        nav ul li a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        nav ul li a:hover {
+            background-color: #f0f0f0;
+        }
+        .post-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+        .tag {
+            background: #e0e0e0;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            color: #555;
+            margin-left: 10px;
+        }
+        
+        main {
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        article {
+            width: 100%;
+        }
+        /* サブタイトルを左寄せ */
+        article h2 {
+            text-align: left !important;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="../index.html">← Topに戻る</a>
+            <a href="../index.html">← Top</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../Gallery/index.html">Gallery</a></li>
+                <li><a href="../Notes/index.html">Blogs</a></li>
+            </ul>
         </nav>
-        <h1>最初の記事：ブログ始めました</h1>
-        <p>2026-01-20 / Category: Diary</p>
     </header>
 
     <main>
-        <section>
-            <p>ここに日々の記録や、技術的なメモを書いていきます。</p>
-            <p>例えば、Unityのスクリプトは以下のように表示できます。</p>
-        </section>
+        <article>
+            <h1>サイトを開設しました</h1>
+            <div class="post-meta">
+                📅 2024/02/17
+                <span class="tag">Web</span>
+                <span class="tag">GitHub Pages</span>
+            </div>
 
-        <section>
-            <h3>C#のコード例</h3>
-            <pre><code>
-void Start() {
-    Debug.Log("Hello World!");
-}
-            </code></pre>
-        </section>
+            <section>
+                <h2>このサイトについて</h2>
+                <p>技術メモと成果物を公開するためのサイトを作成しました。
+                GitHub Pagesで静的サイトとしてホスティングし、以下のカテゴリーで構成しています：</p>
+                <ul>
+                    <li><strong>Gallery</strong> - ゲーム開発、組み込み技術、AI実装などの成果物</li>
+                    <li><strong>Blogs</strong> - 技術記事や学習メモ</li>
+                </ul>
+                <p>現在開発中のVolatileゲームエンジンをはじめ、様々な技術プロジェクトの進捗を<a href="../Gallery/index.html">Gallery</a>で随時更新していきます。
+                調査した技術や雑多なメモも<a href="../Notes/index.html">Blogs</a>で積極的に公開していく予定です。</p>
+            </section>
+
+            <section>
+                <h2>技術スタック</h2>
+                <p>このサイトは以下の技術で構築されています：</p>
+                <ul>
+                    <li>HTML/CSS（静的サイト）</li>
+                    <li><a href="https://unpkg.com/mvp.css" target="_blank">MVP.css</a> - クラスレスCSSフレームワーク</li>
+                    <li>GitHub Pages - ホスティング</li>
+                </ul>
+            </section>
+
+
+
+            <section>
+                <h2>参考リンク</h2>
+                <p>参考になったリンクです：</p>
+                <ul>
+                    <li><a href="https://pages.github.com/" target="_blank">GitHub Pages</a></li>
+                    <li><a href="https://andybrewer.github.io/mvp/" target="_blank">MVP.css</a></li>
+                </ul>
+            </section>
+        </article>
+
+        <hr style="margin: 40px 0;">
+        <nav>
+            <a href="../Notes/index.html">← Blogs一覧に戻る</a>
+        </nav>
     </main>
 </body>
 </html>

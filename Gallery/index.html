@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZawaaDon Homepage</title>
+    <title>Gallery - ZawaaDon Homepage</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
-    
     <style>
         /* カスタムレイアウト設定 */
         header {
@@ -13,12 +12,10 @@
             margin-bottom: 0 !important;
         }
 
-        /* メインエリアの上側を詰める */
         main {
             padding-top: 10px !important;
         }
 
-        /* 区切り線(hr)の上下の隙間を減らす */
         hr {
             margin: 20px 0;
         }
@@ -64,6 +61,17 @@
             }
         }
 
+        /* サイドバーのRecent Updates */
+        aside ul li {
+            line-height: 1.4;
+        }
+        aside ul li a {
+            color: #333;
+        }
+        aside ul li a:hover {
+            color: #0066cc;
+        }
+
         /* カテゴリーカードグリッド */
         .category-grid {
             display: grid;
@@ -99,15 +107,65 @@
             margin-bottom: 10px;
         }
 
-        /* サイドバーのRecent Updates */
-        aside ul li {
-            line-height: 1.4;
+        /* プロジェクトメタ情報 */
+        .project-meta {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
         }
-        aside ul li a {
+
+        .tech-tag {
+            background: #333;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+
+        .category-tag {
+            background: #FF9800;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .status-active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status-planning {
+            background: #FFC107;
             color: #333;
         }
-        aside ul li a:hover {
-            color: #0066cc;
+
+        .project-links {
+            margin-top: 15px;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            padding: 5px 15px;
+            background: #333;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+
+        .project-links a:hover {
+            background: #555;
         }
     </style>
 </head>
@@ -116,9 +174,9 @@
         <nav>
             <h1>ZawaaDon Homepage</h1>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="Gallery/index.html">Gallery</a></li>
-                <li><a href="Notes/index.html">Blogs</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../Gallery/index.html">Gallery</a></li>
+                <li><a href="../Notes/index.html">Blogs</a></li>
             </ul>
         </nav>
     </header>
@@ -127,7 +185,7 @@
         <hr>
         <div class="layout-container">
             
-            <!-- サイドバー：SNSリンク -->
+            <!-- サイドバー -->
             <aside>
                 <h4>Links</h4>
                 <ul style="display: block;">
@@ -145,7 +203,7 @@
                 <h4 style="margin-top: 30px;">Recent Updates</h4>
                 <ul style="display: block; font-size: 0.9em;">
                     <li style="margin-bottom: 10px;">
-                        <a href="posts/001_hello.html">サイト開設</a>
+                        <a href="../posts/001_hello.html">サイト開設</a>
                         <br><small style="color: #999;">2024/02/17</small>
                     </li>
                     <!-- 最新3件程度をここに追加 -->
@@ -155,26 +213,34 @@
             <!-- メインコンテンツ -->
             <div class="main-content">
                 
-                <!-- カテゴリーカード -->
-                <h2>Categories</h2>
+                <h2>Gallery</h2>
+                
                 <div class="category-grid">
                     
+                    <!-- プロジェクト：Volatileエンジン -->
                     <div class="category-card">
-                        <a href="Gallery/index.html">
-                            <div class="category-icon">🎨</div>
-                            <h3>Gallery</h3>
-                            <p>成果物ギャラリー</p>
-                            <small>ゲーム開発、組み込み技術、AI実装など</small>
+                        <a href="volatile_details.html">
+                            <h3>Volatile Engine</h3>
+                            <span class="status-badge status-planning">準備中</span>
+                            <p>C++で開発中のゲームエンジン。ECS（Entity Component System）アーキテクチャを採用し、2D/3Dゲーム開発に対応。</p>
+                            
+                            <div class="project-meta">
+                                <span class="category-tag">ゲーム</span>
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">OpenGL</span>
+                                <span class="tech-tag">ECS</span>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://github.com/Yura0326/Volatile" target="_blank" onclick="event.stopPropagation();">GitHub</a>
+                            </div>
                         </a>
                     </div>
 
-                    <div class="category-card">
-                        <a href="Notes/index.html">
-                            <div class="category-icon">📝</div>
-                            <h3>Blogs</h3>
-                            <p>技術記事・メモ</p>
-                            <small>開発の学びや調査結果</small>
-                        </a>
+                    <!-- Coming Soon -->
+                    <div class="category-card" style="opacity: 0.5;">
+                        <h3>新規プロジェクト</h3>
+                        <p>次のプロジェクトを計画中です。</p>
                     </div>
                     
                 </div>
