@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サイトを開設しました - ZawaaDon Homepage</title>
+    <title>記事タイトル - ZawaaDon Homepage</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -103,36 +103,27 @@
 
     <main>
         <article>
-            <h1>サイトを開設しました</h1>
+            <h1>記事タイトル（コンパクトスタイル）</h1>
             <div class="post-meta">
                 📅 2024/02/17
-                <span class="tag">Web</span>
-                <span class="tag">GitHub Pages</span>
+                <span class="tag">カテゴリ</span>
             </div>
 
             <!-- Markdown本文 -->
             <div id="markdown-content" style="display:none;">
-## このサイトについて
+## 見出し1
 
-技術メモと成果物を公開するためのサイトを作成しました。
-GitHub Pagesで静的サイトとしてホスティングし、以下のカテゴリーで構成しています：
+本文がここに入ります。コンパクトなスタイルで余白を最小限にしています。
 
-- **Gallery** - ゲーム開発、組み込み技術、AI実装などの成果物
-- **Blogs** - 技術記事や学習メモ
+## 見出し2
 
-現在開発中のVolatileゲームエンジンをはじめ、様々な技術プロジェクトの進捗を[Gallery](../Gallery/index.html)で随時更新していきます。
-調査した技術や雑多なメモも[Blogs](../Notes/index.html)で積極的に公開していく予定です。
+- リスト項目1
+- リスト項目2
 
-## 技術スタック
+## 見出し3
 
-このサイトは以下の技術で構築されています：
-
-- HTML/CSS（静的サイト）
-- [MVP.css](https://unpkg.com/mvp.css) - クラスレスCSSフレームワーク
-- [marked.js](https://marked.js.org/) - Markdownパーサー
-- [GitHub Pages](https://pages.github.com/) - ホスティング
-
-           </div>
+さらに本文が続きます。
+            </div>
 
             <!-- Markdownから変換されたHTML -->
             <div id="article-content"></div>
@@ -145,7 +136,6 @@ GitHub Pagesで静的サイトとしてホスティングし、以下のカテ�
     </main>
 
     <script>
-        // ページ読み込み時にMarkdownをHTMLに変換
         document.addEventListener('DOMContentLoaded', function() {
             const markdownContent = document.getElementById('markdown-content').textContent;
             const htmlContent = marked.parse(markdownContent);

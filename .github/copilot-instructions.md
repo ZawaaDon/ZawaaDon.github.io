@@ -1,36 +1,50 @@
-# Copilot Instructions for Yura Homepage
+# Copilot Instructions for ZawaaDon Homepage
 
 ## Project Overview
-This is a Japanese-language personal Tech Note site hosted on GitHub Pages (`Yura0326.github.io`). The site is a static website built with pure HTML/CSS using the MVP.css framework, serving as a knowledge base for technical documentation and development progress.
+This is a Japanese-language personal portfolio and tech blog site hosted on GitHub Pages (`ZawaaDon.github.io`). The site is a static website built with pure HTML/CSS using the MVP.css framework, serving as a hub for showcasing projects and sharing technical articles.
 
 ### Content Strategy
-- **Purpose**: Share technical details and assets from ongoing development projects
-- **Format**: Wiki-style documentation (not blog-style chronological posts)
-- **Primary focus**: Game engine development (Volatile project - private GitHub repo)
-- **Update digest**: Homepage shows summaries of latest content updates
+- **Purpose**: Portfolio hub for projects (Gallery) and technical blog posts (Blogs)
+- **Format**: Static HTML with Markdown support for blog articles
+- **Primary focus**: Game engine development (Volatile project - private GitHub repo), technical experiments, and learning notes
+- **Update digest**: Homepage shows recent updates in sidebar
 
 ## Architecture
 
 ### Site Structure
-- `index.html` - Main landing page with sidebar profile and update digest feed
-- `posts/` - Update digest entries (naming: `001_hello.html`, `002_...`, etc.)
-- `Game/` - Wiki pages for game/game engine development content
-- `Techs/` - Wiki pages for embedded systems and AI technology
-- `Notes/` - Wiki pages for miscellaneous technical notes
-- `yura_icon.png` - Profile image displayed in sidebar
+- `index.html` - Main landing page with category cards (Gallery/Blogs) and sidebar
+- `Gallery/index.html` - Project portfolio showcase with card grid layout
+- `Notes/index.html` - Blog article list (named "Blogs" in UI)
+- `posts/` - Individual blog articles
+  - `001_hello.html` - Site launch post
+  - `template_compact.html` - Template for creating new blog posts
 
 ### Content Categories
-1. **Game** - ゲーム・ゲームエンジン開発
-   - Primary: Volatile game engine (C++ project at `E:\dev\MyCppGame`)
-   - GitHub: https://github.com/Yura0326/Volatile (Private repository)
-2. **Techs** - 組み込み技術、AI技術
-3. **Notes** - その他の技術メモ
+1. **Gallery** (成果物ギャラリー) - Project portfolio
+   - Game development projects (e.g., Volatile Engine)
+   - Embedded systems projects
+   - AI/ML implementations
+   - Card grid layout with project metadata
+   
+2. **Blogs** (技術記事・メモ) - Technical blog
+   - Development notes and research
+   - Technology investigations
+   - Learning journals
+   - List format with article summaries
 
 ### Layout System
-The homepage uses a two-column flexbox layout (desktop only):
-- **Left sidebar** (`<aside>`): Fixed 250px width, profile info and links
-- **Right main content** (`.main-content`): Flexible width, article feed
+All pages use a consistent two-column layout (desktop @800px+):
+- **Left sidebar** (`<aside>`): Fixed 250px width
+  - Links (SNS)
+  - About section
+  - Recent Updates
+- **Right main content** (`.main-content`): Flexible width
 - Mobile: Stacks vertically automatically
+
+### Navigation
+Unified header across all pages:
+- Site title: "ZawaaDon Homepage"
+- Navigation: Home | Gallery | Blogs
 
 ## Key Conventions
 
@@ -40,59 +54,76 @@ The homepage uses a two-column flexbox layout (desktop only):
 
 ### Styling Approach
 - **Base framework**: MVP.css loaded via CDN (`https://unpkg.com/mvp.css`)
+- **Markdown parser**: marked.js loaded via CDN (`https://cdn.jsdelivr.net/npm/marked/marked.min.js`)
 - **Custom styles**: Defined in `<style>` block within each HTML file
-- Key customizations in index.html:
-  - Tight spacing with reduced padding/margins
-  - Flexbox layout for sidebar + main content
-  - Articles stacked vertically with dashed dividers
+- **Style theme**: Compact style with minimal spacing
+  - Header margin-bottom: 10px
+  - Tight spacing throughout
+  - Article width: max 700px, centered
 
-### Blog Post Pattern
-New posts follow this structure:
-```html
-<!-- In index.html updates section -->
-<article>
-    <h3><a href="posts/00X_title.html">Japanese Title</a></h3>
-    <p>Brief description</p>
-    <small>YYYY/MM/DD - Category</small>
-</article>
+### Card Grid System
+Used in index.html and Gallery/index.html:
+```css
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
 ```
 
-Individual post files (`posts/00X_*.html`):
-- Full standalone HTML with MVP.css
-- Back link to `../index.html` in nav
-- Date and category in header
-- Use `<pre><code>` for code snippets
+### Blog Post Pattern (Markdown Support)
+Blog posts use Markdown for content with client-side rendering:
 
-### Wiki Page Pattern
-Wiki pages are organized by category folders (Game/Techs/Notes):
 ```html
-<!-- Wiki page structure -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Page Title - Category</title>
+    <title>記事タイトル - ZawaaDon Homepage</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Compact style CSS */
+    </style>
 </head>
 <body>
-    <nav><a href="../index.html">← Top</a></nav>
-    <h1>Page Title</h1>
-    <!-- Content with sections, code examples, images -->
+    <header>
+        <nav>
+            <a href="../index.html">← Top</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../Gallery/index.html">Gallery</a></li>
+                <li><a href="../Notes/index.html">Blogs</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h1>記事タイトル</h1>
+            <div class="post-meta">📅 YYYY/MM/DD <span class="tag">タグ</span></div>
+            
+            <!-- Markdown content (hidden) -->
+            <div id="markdown-content" style="display:none;">
+## 見出し
+本文をMarkdownで記述
+            </div>
+            
+            <!-- Rendered HTML -->
+            <div id="article-content"></div>
+        </article>
+        <hr style="margin: 30px 0;">
+        <nav><a href="../Notes/index.html">← Blogs一覧に戻る</a></nav>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const markdownContent = document.getElementById('markdown-content').textContent;
+            const htmlContent = marked.parse(markdownContent);
+            document.getElementById('article-content').innerHTML = htmlContent;
+        });
+    </script>
 </body>
 </html>
 ```
-
-**Wiki page guidelines**:
-- Topic-focused, not chronological (unlike posts/)
-- Can be updated/expanded over time without date stamps
-- Cross-link related wiki pages within same or different categories
-- Use descriptive filenames (e.g., `entity_component_system.html`)
-
-### Update Digest (posts/)
-- `posts/` directory contains update summaries, not full content
-- Each post announces new/updated wiki content with brief description
-- Links to relevant wiki pages in Game/, Techs/, or Notes/
-- Maintains chronological update history on homepage
 
 ### File Naming
 - Posts: Sequential numbering `001_`, `002_`, etc. with descriptive suffix
@@ -106,23 +137,52 @@ Since this is static HTML, simply open files in a browser:
 - Or directly open `index.html` in browser (file:// protocol)
 
 ### Deployment
-- Push to `main` branch → automatically published to `https://yura0326.github.io/`
-- No build step required (pure HTML/CSS)
+- Push to `main` branch → automatically published to `https://ZawaaDon.github.io/`
+- No build step required (pure HTML/CSS/JS)
 
 ## Adding New Content
 
-### New Wiki Page
-1. Create page in appropriate category folder: `Game/`, `Techs/`, or `Notes/`
-2. Use descriptive filename (e.g., `volatile_engine_architecture.html`)
-3. Follow wiki page structure with back link to top
-4. Add cross-references to related wiki pages
+### New Gallery Project
+1. Edit `Gallery/index.html`
+2. Add new project card in `.category-grid`:
+```html
+<div class="category-card">
+    <a href="project_details.html">
+        <h3>Project Name</h3>
+        <span class="status-badge status-planning">準備中</span>
+        <p>Project description</p>
+        <div class="project-meta">
+            <span class="category-tag">カテゴリ</span>
+            <span class="tech-tag">Tech1</span>
+            <span class="tech-tag">Tech2</span>
+        </div>
+        <div class="project-links">
+            <a href="https://github.com/..." target="_blank">GitHub</a>
+        </div>
+    </a>
+</div>
+```
 
-### New Update Digest
-1. Create `posts/00X_title.html` with next sequential number
-2. Copy structure from `001_hello.html` as template
-3. Add article entry to `index.html` in the Update section
-4. Link to new/updated wiki pages from the digest
-5. Update date and category appropriately (Game/Techs/Notes)
+### New Blog Post
+1. Copy `posts/template_compact.html` to `posts/00X_title.html`
+2. Update title, date, tags, and Markdown content
+3. Add entry to `Notes/index.html` article list
+4. Add to "Recent Updates" in sidebar (index.html, Gallery/index.html, Notes/index.html)
 
-### Navigation Updates
-Update the nav menu in `index.html` when adding new sections (currently placeholders: Games, Techs, Notes, Contact)
+### Template Usage
+Use `posts/template_compact.html` as the base template for all new blog posts. It includes:
+- Compact style spacing
+- Markdown support with marked.js
+- Consistent navigation
+- Proper styling for headings and content
+
+## Technical Stack
+- **HTML/CSS**: Pure static files
+- **MVP.css**: Classless CSS framework
+- **marked.js**: Client-side Markdown parser
+- **GitHub Pages**: Hosting platform
+- **No build process**: Files are served as-is
+
+## Project References
+- Volatile Engine: https://github.com/Yura0326/Volatile (Private repository)
+- SNS Links: X (Twitter), GitHub, Qiita, YouTube
